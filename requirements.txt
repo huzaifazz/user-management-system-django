@@ -1,0 +1,8 @@
+asgiref==3.8.1
+Django==5.2.5
+mysqlclient==2.2.4
+pymysql==1.1.0
+crispy-bootstrap5==2024.2
+django-crispy-forms==2.1
+pytz==2024.1
+sqlparse==0.4.4

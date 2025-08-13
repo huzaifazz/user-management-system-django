@@ -1,0 +1,33 @@
+{% extends 'main/base.html' %}
+{% block title %}Profile{% endblock %}
+{% block content %}
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-4">
+            {% if profile.avatar %}
+                <img src="{{ profile.avatar.url }}" class="img-thumbnail" alt="Avatar" style="max-width:200px;">
+            {% else %}
+                <img src="https://ui-avatars.com/api/?name={{ user_obj.username }}" class="img-thumbnail" alt="Avatar" style="max-width:200px;">
+            {% endif %}
+        </div>
+        <div class="col-md-8">
+            <h2>{{ user_obj.username }}
+                <span class="btn btn-sm btn-outline-info ms-2" style="pointer-events:none;cursor:default;">
+                    {{ profile.role|title }}
+                </span>
+            </h2>
+            <p>{{ profile.bio|default:"No bio yet." }}</p>
+            <ul class="list-unstyled">
+                {% if profile.website %}<li><strong>Website:</strong> <a href="{{ profile.website }}" target="_blank">{{ profile.website }}</a></li>{% endif %}
+                {% if profile.twitter %}<li><strong>Twitter:</strong> <a href="{{ profile.twitter }}" target="_blank">{{ profile.twitter }}</a></li>{% endif %}
+                {% if profile.github %}<li><strong>GitHub:</strong> <a href="{{ profile.github }}" target="_blank">{{ profile.github }}</a></li>{% endif %}
+            </ul>
+            {% if user_obj == user %}
+                <a href="{% url 'edit_profile' %}" class="btn btn-primary">Edit Profile</a>
+            {% elif user.is_superuser %}
+                <a href="{% url 'admin_edit_profile' user_obj.username %}" class="btn btn-warning">Edit User Role</a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

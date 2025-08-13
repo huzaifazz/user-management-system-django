@@ -1,6 +1,26 @@
+# User Profile model
+from django.conf import settings
 from django.db import models
 from django.contrib.auth.models import User
 
+class Profile(models.Model):
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+
+    avatar = models.ImageField(upload_to='avatars/', blank=True, null=True)
+    bio = models.TextField(blank=True)
+    website = models.URLField(blank=True)
+    twitter = models.URLField(blank=True)
+    github = models.URLField(blank=True)
+    ROLE_CHOICES = [
+        ('user', 'User'),
+        ('moderator', 'Moderator'),
+        ('editor', 'Editor'),
+        ('admin', 'Admin'),
+    ]
+    role = models.CharField(max_length=20, choices=ROLE_CHOICES, default='user')
+
+    def __str__(self):
+        return f"Profile of {self.user.username}"
 
 class Post(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)

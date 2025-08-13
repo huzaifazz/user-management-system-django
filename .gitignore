@@ -48,3 +48,5 @@ staticfiles/
 # Environment variables
 .env
 
+# Media
+media

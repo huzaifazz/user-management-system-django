@@ -41,20 +41,20 @@ pip install -r requirements.txt
 
 - **Configure your database in `website/settings.py`** (default is MySQL, update credentials as needed).
 
-5. **Apply migrations:**
+- **Apply migrations:**
 
 ```bash
 python manage.py makemigrations
 python manage.py migrate
 ```
 
-6. **Create a superuser:**
+- **Create a superuser:**
 
 ```bash
 python manage.py createsuperuser
 ```
 
-7. **Run the development server:**
+- **Run the development server:**
 
 ```bash
 python manage.py runserver
